@@ -1,4 +1,4 @@
-# `svm2csr`: convert svmlight text files into scipy CSR representation
+# `svm2csr`: SVMlight text files to scipy CSR
 
 [![travis build](https://travis-ci.org/vlad17/svm2csr.svg?branch=master)](https://travis-ci.org/vlad17/svm2csr)
 [![pypi](https://img.shields.io/pypi/v/svm2csr.svg)](https://pypi.org/project/svm2csr/)
@@ -11,7 +11,7 @@ Many sparse datasets are distributed in a lightweight text format called [svmlig
 # https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/binary.html
 
 import sklearn.datasets
-%timeit %timeit sklearn.datasets.load_svmlight_file('kdda')
+%timeit sklearn.datasets.load_svmlight_file('kdda')
 1min 56s ± 1.72 s per loop (mean ± std. dev. of 7 runs, 1 loop each)
 
 # https://github.com/mblondel/svmlight-loader
