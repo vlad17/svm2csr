@@ -24,7 +24,7 @@ from svm2csr import load
 pip install svm2csr
 ```
 
-Note this package is only available for pythons, operating systems, and machine architecture targets I can build wheels for. Right now, that makes it linux-only.
+Note this package is only available for pythons, operating systems, and machine architecture targets I can build wheels for (see [Publishing](#publishing)). Right now, that makes it linux-only.
 
 * `cp36-cp39, manylinux2010, x86_64`
 
@@ -33,7 +33,7 @@ Note this package is only available for pythons, operating systems, and machine 
 * `dtype` (currently only doubles supported)
 * an svmlight ranking mode where query ids are identified with `qid`
 * comments in svmlight files (start with `#`)
-* empty lines
+* empty or blank lines
 * multilabel [extension](https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/multilabel.html)
 * reading from compressed files
 * reading from multiple files and stacking
