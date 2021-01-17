@@ -22,5 +22,5 @@ script:
   - maturin build --interpreter $PYVER
   - |
     if [[ $TRAVIS_TAG ]] && [ -n "$PYPI_TOKEN" ]; then
-       maturin publish --no-sdist --username __token__ --password "$PYPI_TOKEN"
+       docker run --rm -v $(pwd):/io konstin2/maturin publish --no-sdist --username __token__ --password "$PYPI_TOKEN"
     fi

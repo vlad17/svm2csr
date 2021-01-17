@@ -24,9 +24,9 @@ from svm2csr import load
 pip install svm2csr
 ```
 
-Note this package is only available for pythons, operating systems, and machine architecture targets I can build wheels for. Right now, that's:
+Note this package is only available for pythons, operating systems, and machine architecture targets I can build wheels for. Right now, that makes it linux-only.
 
-* `cp36m, manylinux2010, x86_64`
+* `cp36-cp39, manylinux2010, x86_64`
 
 # Unsupported Features
 
@@ -41,6 +41,8 @@ Note this package is only available for pythons, operating systems, and machine 
 * writing SVMlight files
 * `n_features` option
 * `zero_based` option
+* graceful client `multiprocessing`
+* mac and windows wheels
 
 All of these are fixable (even stream reading with parallel bridge). Let me know if you'd like to make PR.
 
