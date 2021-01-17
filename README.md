@@ -94,6 +94,6 @@ Maturin doesn't prepare a `setup.py` when publishing. For this reason, a source 
 A new set of wheels can be built and published for supported OSes and pythons with the following steps for a repository administrator:
 
 1. Fetch the most recent master.
-1. Bump the version in `Cargo.toml` appropriately if needed (else wheel names will clash with previous ones in pypi, though PRs should be bumping this already). Commit these changes.
+1. Bump the version in `Cargo.toml` appropriately if needed. Commit these changes.
 1. Tag the release. `git tag -a -m "v<CURRENT VERSION>"`
 1. Push to github, triggering a Travis build that tests, packages, and uploads to pypi. `git push --follow-tags`
