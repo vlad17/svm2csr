@@ -21,19 +21,11 @@ pub struct FileChunk {
 impl FileChunk {
     /// Iterates over just those lines the file chunk refers to.
     pub fn lines(&self) -> impl Iterator<Item = Vec<u8>> {
-        // interesting extension for this method would be to avoid
-        // copies in the common case by relying on the BufReader's buffer
-        // and returning an iterator into &[u8] slices to that directly
-        // (with a fallback for larger-than-buffer lines, "simple" fallback
-        // could just be to allocate a bigger bufreader and seek back).
-        //
-        // this could possibly require creating a separate BufReader owner
-        // that generates an iterator, depending on from_fn lifetimes,
-        // or just boxing the closure.
         let mut file = File::open(&self.path).expect("file available");
         file.seek(SeekFrom::Start(self.start.try_into().unwrap()))
             .expect("seek");
-        let reader = BufReader::new(file);
+        const BUFFER_SIZE: usize = 32 * 1024;
+        let reader = BufReader::with_capacity(BUFFER_SIZE.min(self.stop - self.start), file);
         let mut current_byte = self.start;
         let stop_byte = self.stop;
         let mut split_it = reader.split(b'\n');
