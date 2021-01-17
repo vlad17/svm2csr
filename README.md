@@ -1,22 +1,25 @@
-# `svm2csr`: convert svmlight files into CSR representation
+# `svm2csr`: convert svmlight text files into scipy CSR representation
 
-Many sparse datasets are distributed in a lightweight text format called [svmlight](http://svmlight.joachims.org/). While simple and familiar, it's terribly slow to read in python even with C++ solutions. Note this is Python 3.5+.
+Many sparse datasets are distributed in a lightweight text format called [svmlight](http://svmlight.joachims.org/). While simple and familiar, it's terribly slow to read in python even with C++ solutions. This is a Python 3.6+ solution to loading such files by calling a parallel Rust extension which chunks files into byte blocks.
 
 ```
-from sklearn.datasets import load_svmlight_file
-%timeit load_svmlight_file('kdda')
-# ...
+# benchmark dataset is kdda training set, 2.5GB flat text
+# https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/binary.html
+
+import sklearn.datasets
+%timeit %timeit sklearn.datasets.load_svmlight_file('kdda')
+1min 56s ± 1.72 s per loop (mean ± std. dev. of 7 runs, 1 loop each)
 
 # https://github.com/mblondel/svmlight-loader
-# beware this is a pain to install
-from svmlight_loader import load
-%timeit load()
-# ...
+%timeit svmlight_loader.load_svmlight_file('kdda')
+1min 52s ± 3.11 s per loop (mean ± std. dev. of 7 runs, 1 loop each)
 
-from svm2csr import load
-%timeit load()
-# ...
+import svm2csr
+%timeit svm2csr.load_svmlight_file('kdda')
+12.7 s ± 292 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 ```
+
+Above micro-benchmark performed on my 8-core laptop.
 
 # Install
 
@@ -40,7 +43,6 @@ Note this package is only available for pythons, operating systems, and machine 
 * reading from streams
 * writing SVMlight files
 * `n_features` option
-* `zero_based` option
 * graceful client `multiprocessing`
 * mac and windows wheels
 
