@@ -1,9 +1,10 @@
 # `svm2csr`: convert svmlight text files into scipy CSR representation
 
 [![travis build](https://travis-ci.org/vlad17/svm2csr.svg?branch=master)](https://travis-ci.org/vlad17/svm2csr)
+[![pypi](https://img.shields.io/pypi/v/svm2csr.svg)](https://pypi.org/project/svm2csr/)
+[![python versions](https://img.shields.io/pypi/pyversions/svm2csr.svg)](https://pypi.org/project/svm2csr/)
 
-
-Many sparse datasets are distributed in a lightweight text format called [svmlight](http://svmlight.joachims.org/). While simple and familiar, it's terribly slow to read in python even with C++ solutions. This is a Python 3.6+ solution to loading such files by calling a parallel Rust extension which chunks files into byte blocks.
+Many sparse datasets are distributed in a lightweight text format called [svmlight](http://svmlight.joachims.org/). While simple and familiar, it's terribly slow to read in python even with C++ solutions. Instead, this solution to loading such files by calling a parallel Rust extension which chunks files into byte blocks.
 
 ```
 # benchmark dataset is kdda training set, 2.5GB flat text
