@@ -83,7 +83,7 @@ maturin develop # create py bindings for rust code
 pytest # test python bindings
 ```
 
-[![travis build](https://travis-ci.org/vlad17/svm2csr.svg?branch=master]](https://travis-ci.org/vlad17/svm2csr)
+[![travis build](https://travis-ci.org/vlad17/svm2csr.svg?branch=master)](https://travis-ci.org/vlad17/svm2csr)
 
 # Publishing
 
