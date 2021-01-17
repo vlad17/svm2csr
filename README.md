@@ -16,7 +16,7 @@ import sklearn.datasets
 
 import svm2csr
 %timeit svm2csr.load_svmlight_file('kdda')
-12.7 s ± 292 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+11.4 s ± 527 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 ```
 
 Above micro-benchmark performed on my 8-core laptop.
