@@ -17,6 +17,9 @@ def load_svmlight_file(fname, zero_based="auto", min_chunk_size=(16 * 1024)):
         shifts indices down uniformly by 1 for python's zero indexing.
     min_chunk_size (int): minimum chunk size in bytes per
         parallel processing task
+
+    Returns (X, y) where X is a sparse CSR matrix and y is a numpy double array
+    with length equal to the number of rows in X. Values of X are doubles.
     """
     assert min_chunk_size > 0
     y, data, indices, indptr = rs_load(fname, min_chunk_size)

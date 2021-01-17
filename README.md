@@ -50,7 +50,22 @@ All of these are fixable (even stream reading with parallel bridge). Let me know
 
 # Documentation
 
-TODO
+```
+def load_svmlight_file(fname, zero_based="auto", min_chunk_size=(16 * 1024)):
+    """
+    Loads an SVMlight file into a CSR matrix.
+
+    fname (str): the file name of the file to load.
+    zero_based ("auto" or bool): whether the corresponding svmlight file uses
+        zero based indexing; if false or all indices are nonzero, then
+        shifts indices down uniformly by 1 for python's zero indexing.
+    min_chunk_size (int): minimum chunk size in bytes per
+        parallel processing task
+
+    Returns (X, y) where X is a sparse CSR matrix and y is a numpy double array
+    with length equal to the number of rows in X. Values of X are doubles.
+    """
+```
 
 # Dev Info
 
