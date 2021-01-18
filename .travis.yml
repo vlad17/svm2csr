@@ -23,5 +23,5 @@ script:
   - maturin build --interpreter $PYVER
   - |
     if [ -n "$PYPI_TOKEN" ]; then
-       docker run --rm -v $(pwd):/io konstin2/maturin build && docker run --rm -v $(pwd):/io konstin2/maturin publish --username __token__ --password "$PYPI_TOKEN" || true
+       docker run --rm -v $(pwd):/io konstin2/maturin publish --username __token__ --password "$PYPI_TOKEN" || true
     fi
