@@ -1,8 +1,11 @@
 [package]
 name = "svm2csr"
-version = "0.2.5"
-authors = ["Vladimir Feinberg <vladimir.feinberg@gmail.com>"]
+version = "0.2.6"
+authors = ["Vladimir Feinberg"]
 edition = "2018"
+readme = "README.md"
+description = "Loads SVMlight text files into scipy sparse CSR matrices in parallel."
+license = "Apache Software License 2.0"
 
 [lib]
 name = "svm2csr"
@@ -18,7 +21,16 @@ version = "0.13"
 features = ["extension-module"]
 
 [package.metadata.maturin]
+# keep consistent with requirements.txt
+requires-dist = ["numpy>=0.16.5", "scipy>=1.5", "scikit-learn>=0.22"]
 maintainer = "Vladimir Feinberg"
 maintainer-email = "vladimir.feinberg@gmail.com"
 project-url = { github = "https://github.com/vlad17/svm2csr" }
-
+classifier = [
+    "Framework :: Django",
+    "License :: OSI Approved :: Apache Software License 2.0",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+]
