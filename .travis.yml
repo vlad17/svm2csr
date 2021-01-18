@@ -12,10 +12,10 @@ script:
   - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -o $HOME/rust-installer/rustup.sh
   - sh ~/rust-installer/rustup.sh -y
   - pip install maturin pytest
-  - pip install .
   - source $HOME/.cargo/env
   - cargo build
   - cargo test
+  - pip install .
   - maturin develop
   - pytest
   - PYVER=$(python -c 'import sys; print("python{}.{}".format(*sys.version_info[:2]))')
