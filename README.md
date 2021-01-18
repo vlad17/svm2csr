@@ -1,4 +1,4 @@
-# `svm2csr`: SVMlight text files to scipy CSR
+# SVMlight text files to scipy CSR
 
 [![travis build](https://travis-ci.org/vlad17/svm2csr.svg?branch=master)](https://travis-ci.org/vlad17/svm2csr)
 [![pypi](https://img.shields.io/pypi/v/svm2csr.svg)](https://pypi.org/project/svm2csr/)
@@ -89,9 +89,9 @@ pytest # test python bindings
 
 # Publishing
 
-A new set of wheels can be built and published for supported OSes and pythons with the following steps for a repository administrator:
-
 1. Fetch the most recent master.
 1. Bump the version in `Cargo.toml` appropriately if needed. Commit these changes.
 1. Tag the release. `git tag -a -m "v<CURRENT VERSION>"`
 1. Push to github, triggering a Travis build that tests, packages, and uploads to pypi. `git push --follow-tags`
+
+Every master travis build attempts to publish to pypi (but may fail if a build with the same version is already present).
