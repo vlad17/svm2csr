@@ -31,7 +31,7 @@ Above micro-benchmark performed on my 8-core laptop.
 pip install svm2csr
 ```
 
-Note this package is only available for pythons, operating systems, and machine architecture targets I can build wheels for (see [Publishing](#publishing)). Right now, that makes it linux-only.
+Note this package is only available pre-built for pythons, operating systems, and machine architecture targets I can build wheels for (see [Publishing](#publishing)). Settings other than the following need to install rust and compile from source (pip install should still work, but will compile for your platform).
 
 * `cp36-cp39, manylinux2010, x86_64`
 
