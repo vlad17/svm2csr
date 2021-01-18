@@ -4,7 +4,7 @@
 [![pypi](https://img.shields.io/pypi/v/svm2csr.svg)](https://pypi.org/project/svm2csr/)
 [![python versions](https://img.shields.io/pypi/pyversions/svm2csr.svg)](https://pypi.org/project/svm2csr/)
 
-Many sparse datasets are distributed in a lightweight text format called [svmlight](http://svmlight.joachims.org/). While simple and familiar, it's terribly slow to read in python even with C++ solutions. Instead, this solution to loading such files by calling a parallel Rust extension which chunks files into byte blocks.
+Many sparse datasets are distributed in a lightweight text format called [svmlight](http://svmlight.joachims.org/). While simple and familiar, it's terribly slow to read in python even with C++ solutions due to serial processing. Instead, `svm2csr` loads by using a parallel Rust extension which chunks files into byte blocks, then seeks to different blocks to parse in parallel.
 
 ```
 # benchmark dataset is kdda training set, 2.5GB flat text
@@ -88,8 +88,6 @@ pytest # test python bindings
 ```
 
 # Publishing
-
-Maturin doesn't prepare a `setup.py` when publishing. For this reason, a source distribution doesn't make sense, as a client machine's `pip` would not know how to install this package. For this reason, only wheels are published.
 
 A new set of wheels can be built and published for supported OSes and pythons with the following steps for a repository administrator:
 

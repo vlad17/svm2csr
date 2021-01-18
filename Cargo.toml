@@ -1,6 +1,6 @@
 [package]
 name = "svm2csr"
-version = "0.2.6"
+version = "0.2.7"
 authors = ["Vladimir Feinberg"]
 edition = "2018"
 readme = "README.md"
