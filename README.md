@@ -2,7 +2,6 @@
 
 [![travis build](https://travis-ci.org/vlad17/svm2csr.svg?branch=master)](https://travis-ci.org/vlad17/svm2csr)
 [![pypi](https://img.shields.io/pypi/v/svm2csr.svg)](https://pypi.org/project/svm2csr/)
-[![python versions](https://img.shields.io/pypi/pyversions/svm2csr.svg)](https://pypi.org/project/svm2csr/)
 
 Many sparse datasets are distributed in a lightweight text format called [svmlight](http://svmlight.joachims.org/). While simple and familiar, it's terribly slow to read in python even with C++ solutions due to serial processing. Instead, `svm2csr` loads by using a parallel Rust extension which chunks files into byte blocks, then seeks to different blocks to parse in parallel.
 

@@ -1,6 +1,6 @@
 [package]
 name = "svm2csr"
-version = "0.3.0"
+version = "0.3.1"
 authors = ["Vladimir Feinberg"]
 edition = "2018"
 readme = "README.md"
@@ -29,6 +29,7 @@ project-url = { github = "https://github.com/vlad17/svm2csr" }
 requires-python = ">=3.6"
 classifier = [
     "License :: OSI Approved :: Apache Software License 2.0",
+    "Programming Language :: Python",
     "Programming Language :: Python :: 3.6",
     "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
