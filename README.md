@@ -3,7 +3,7 @@
 [![travis build](https://travis-ci.org/vlad17/svm2csr.svg?branch=master)](https://travis-ci.org/vlad17/svm2csr)
 [![pypi](https://img.shields.io/pypi/v/svm2csr.svg)](https://pypi.org/project/svm2csr/)
 
-Many sparse datasets are distributed in a lightweight text format called [svmlight](http://svmlight.joachims.org/). While simple and familiar, it's terribly slow to read in python even with C++ solutions due to serial processing. Instead, `svm2csr` loads by using a parallel Rust extension which chunks files into byte blocks, then seeks to different blocks to parse in parallel.
+Many sparse datasets are distributed in a lightweight text format called [svmlight](https://www.cs.cornell.edu/people/tj/svm_light/). While simple and familiar, it's terribly slow to read in python even with C++ solutions due to serial processing. Instead, `svm2csr` loads by using a parallel Rust extension which chunks files into byte blocks, then seeks to different blocks to parse in parallel.
 
 ```
 # benchmark dataset is kdda training set, 2.5GB flat text
@@ -33,6 +33,14 @@ pip install svm2csr
 Note this package is only available pre-built for pythons, operating systems, and machine architecture targets I can build wheels for (see [Publishing](#publishing)). Settings other than the following need to install rust and compile from source (pip install should still work, but will compile for your platform).
 
 * `cp36-cp39, manylinux2010, x86_64`
+
+One important difference from SVMLight is this package allows for the default value of features. I.e., the line
+
+```
+3.2 3:-0.2 6 7 8:1.0 9
+```
+
+is parsed as having label `3.2` and sparse vector `{3: -0.2, 6: 1.0, 7: 1.0, 8: 1.0, 9: 1.0}`. This is just done so that Vowpal Wabbit style input data can be accepted without preprocessing.
 
 # Unsupported Features
 
@@ -90,7 +98,7 @@ pytest # test python bindings
 
 1. Fetch the most recent master.
 1. Bump the version in `Cargo.toml` appropriately if needed. Commit these changes.
-1. Tag the release. `git tag -a -m "v<CURRENT VERSION>"`
+1. Tag the release. `git tag -a -m "v<CURRENT VERSION>" "v<CURRENT VERSION>"`
 1. Push to github, triggering a Travis build that tests, packages, and uploads to pypi. `git push --follow-tags`
 
 Every master travis build attempts to publish to pypi (but may fail if a build with the same version is already present).
