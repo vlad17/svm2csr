@@ -114,14 +114,17 @@ impl<'a> Iterator for SvmlightLineIter<'a> {
                 continue;
             }
             let string = str::from_utf8(word).expect("utf-8");
-            let (feature, value) = string
-                .rfind(':')
-                .map(|pos| (&string[..pos], &string[pos + 1..]))
-                .expect("feature-value pair");
-            return Some((
-                feature.parse().expect("parse feature"),
-                value.parse().expect("parse value"),
-            ));
+            match string.rfind(':') {
+                Some(pos) => {
+                    let feature = string[..pos].parse().expect("parse feature");
+                    let value = string[pos + 1..].parse().expect("parse value");
+                    return Some((feature, value));
+                }
+                None => {
+                    let feature = string.parse().expect("parse feature");
+                    return Some((feature, 1.0));
+                }
+            }
         }
         None
     }

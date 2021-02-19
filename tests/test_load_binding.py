@@ -5,12 +5,16 @@ import pytest
 
 from svm2csr import load_svmlight_file as myload
 
-def eval_custom(tmp_path, contents, chunk_sizes):
+def mkfile(tmp_path, contents):
     fn = tmp_path / 'testfile'
     with open(fn, 'w') as f:
         print(contents, file=f, end='')
 
     fn = str(fn)
+    return fn
+
+def eval_custom(tmp_path, contents, chunk_sizes):
+    fn = mkfile(tmp_path, contents)
     check_file_loaded_equally(fn, chunk_sizes)
 
 def check_file_loaded_equally(fn, chunk_sizes):
@@ -50,6 +54,19 @@ for k in list(CASES):
 def test_const_file(tmp_path, case):
     chunk_sizes = [1, 2, 3, 5, 10, 100, None]
     eval_custom(tmp_path, CASES[case], chunk_sizes)
+
+def test_missing_value(tmp_path):
+    content = '3.2 1:2 3 4 5:0.2\n'
+    content += '-2.2 0:3 3:-0.3 4:-1.0 10\n'
+    fn = mkfile(tmp_path, content)
+    actual_X, actual_y = myload(fn)
+    np.testing.assert_array_equal(
+        actual_y, [3.2, -2.2])
+    np.testing.assert_array_equal(
+        np.asarray(actual_X.todense()),
+        np.asarray([
+            [0, 2, 0,    1,    1, 0.2, 0, 0, 0, 0, 0],
+            [3, 0, 0, -0.3, -1.0,   0, 0, 0, 0, 0, 1]]).astype(float))
 
 def weird_floats(n):
     y = np.random.choice([-1.0, 0.0, 1.0, 2.0], size=n)
